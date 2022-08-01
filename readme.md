@@ -9,6 +9,7 @@
 - Google Maps API -> Give coordinates to move to for robot
 - Gyro for direction
 - Look into what the camera module can do
+- Could implement stop button for robot if red lights won't work
 
 # VIDEO IDEAS
 - Montage of building and realizing mistakes -> Drill onto mat -> New dog
