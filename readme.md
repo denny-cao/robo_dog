@@ -1,9 +1,10 @@
 # TODO
-Good name
-Slides add actual feedback
-Microphone
-Follow Me
-If everything works by Monday:
+- Good name
+- Slides add actual feedback
+- Microphone
+- [Object Avoidance](https://www.youtube.com/watch?v=KO1CaPIjt8M)
+
+## If everything works by Monday:
 - Buy Bluetooth or look into using WIFI from car 
 - Google Maps API -> Give coordinates to move to for robot
 - Gyro for direction
