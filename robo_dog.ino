@@ -5,23 +5,6 @@
 #include <SPI.h>
 #include <SD.h>
 
-/* TODO:
-===========  
-Good name
-Slides add actual feedback
-Microphone
-Follow Me
-If everything works by Monday:
-- Buy Bluetooth or look into using WIFI from car 
-- Google Maps API -> Give coordinates to move to for robot
-- Gyro for direction
-- Look into what the camera module can doS
-*/
-
-/* VIDEO IDEAS:
-============
-*/
-
 // MOTORS L298N
 
 // Motor A
