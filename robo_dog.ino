@@ -33,6 +33,8 @@ TMRpcm tmrpcm;
 // Speaker
 #define SPEAKER_PIN 10
 
+tmmmrpcm.speakerPin = 10;
+
 void setup() {
   Serial.begin(115200); 
 
@@ -53,12 +55,10 @@ void setup() {
   digitalWrite(B_FORWARDS_PIN, LOW);
   digitalWrite(B_BACKWARDS_PIN, LOW);  
   analogWrite(B_SPEED_CTRL_PIN, 0);
-
-  tmmmrpcm.speakerPin = 10;
 }
 
 void forward() {
-  // Runs motors in same direction
+  // Runs motors forwards
 
   // Turn on Motor A
   digitalWrite(A_FORWARDS_PIN, HIGH);
@@ -71,7 +71,22 @@ void forward() {
   // Set speed to max
   analogWrite(A_SPEED_CTRL_PIN, 255);
   analogWrite(B_SPEED_CTRL_PIN, 255;
+}
 
+void backward() {
+  // Runs motors backward
+
+  // Turn on Motor A
+  digitalWrite(A_FORWARDS_PIN, LOW);
+  digitalWrite(A_BACKWARDS_PIN, HIGH);
+
+  // Turn on Motor B
+  digitalWrite(B_FORWARDS_PIN, LOW);
+  digitalWrite(B_BACKWARDS_PIN, HIGH);
+
+  // Set speed to max
+  analogWrite(A_SPEED_CTRL_PIN, 255);
+  analogWrite(B_SPEED_CTRL_PIN, 255;
 }
 
 void stop() {
@@ -115,6 +130,10 @@ void left() {
   // Turn off Motor B
   digitalWrite(B_FORWARDS_PIN, LOW);
   digitalWrite(B_BACKWARDS_PIN, LOW);  
+
+  // Set speed (0, 255)
+  analogWrite(A_SPEED_CTRL_PIN, 100);
+  analogWrite(B_SPEED_CTRL_PIN, 0);
 }
 
 void avoid() {
@@ -127,23 +146,16 @@ void avoid() {
   
   if(dist <= 40) {
     // Stop motors
-    stop();
-    delay(50);
-    // Check left and right
-    analogWrite(A_SPEED_CTRL_PIN, 1);
-    analogWrite(A_SPEED_CTRL_PIN, 1);
-    left();
-    // TODO: If ultrasonic detects > certain amount -> Go straight 
-    delay(2000); // TODO: Calibrate how long it takes to sweep left
+    backward();
+    delay(200);
     right();
   }
+}
 
 void loop() {
   forward();
   avoid();
-
-  // TODO: IF HEAR SOUND:
-    play();
+  play();
 }
 
 
@@ -152,6 +164,6 @@ void play() {
   tmrpcm.setVolume(5);
   tmrpcm.stopPlayback();
   tmmmmmmr.play("bark.wav");
-
+  delay(20000);
   return;
 }
