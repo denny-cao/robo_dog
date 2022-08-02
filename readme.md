@@ -2,10 +2,15 @@
 - Good name
 - Slides add actual feedback
 - Microphone
+
+# RESOURCES
 - [Object Avoidance](https://www.youtube.com/watch?v=KO1CaPIjt8M)
 - [GPS Guided Robot](https://www.instructables.com/How-to-Build-a-GPS-Guided-Robot/)
 - [Google Maps Navigation](https://forum.arduino.cc/t/convert-google-navigation-signal-into-a-arduino-control-signal/389816)
 - [Use for xml route](https://kurviger.de/)
+- [Coordinates using wifi pinging](https://www.arduino.cc/reference/en/libraries/wifilocation/)
+- [App Inventor Bluetooth Android App](https://coldstreams.com/appinventor/2015/01/23/part-1-basic-bluetooth-communications-using-app-inventor/)
+- [Arduino Forum Use Android GPS](https://forum.arduino.cc/t/connect-phone-to-arduino-and-have-the-phone-send-its-gps-location-to-the-arduino/428898/4)
 
 ## If everything works by Monday:
 - Buy Bluetooth or look into using WIFI from car 
