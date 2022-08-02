@@ -3,6 +3,7 @@
 - Slides add actual feedback
 - Microphone
 - [Object Avoidance](https://www.youtube.com/watch?v=KO1CaPIjt8M)
+- [GPS Guided Robot](https://www.instructables.com/How-to-Build-a-GPS-Guided-Robot/)
 
 ## If everything works by Monday:
 - Buy Bluetooth or look into using WIFI from car 
