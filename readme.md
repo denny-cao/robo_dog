@@ -4,7 +4,7 @@
 - Microphone
 - [Object Avoidance](https://www.youtube.com/watch?v=KO1CaPIjt8M)
 - [GPS Guided Robot](https://www.instructables.com/How-to-Build-a-GPS-Guided-Robot/)
-
+- [Google Maps Navigation](https://forum.arduino.cc/t/convert-google-navigation-signal-into-a-arduino-control-signal/389816)
 ## If everything works by Monday:
 - Buy Bluetooth or look into using WIFI from car 
 - Google Maps API -> Give coordinates to move to for robot
