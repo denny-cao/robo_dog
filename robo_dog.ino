@@ -161,7 +161,6 @@ void updateGoalCoords() {
     Simple Approach: Set goal coord once, and straight path.
                      Follow path until obstacle, then avoid and
                      try to stay on line
-    https://developer.android.com/reference/android/location/Location: getBearing()
   */
   ;
   // Detect 
@@ -170,15 +169,16 @@ void updateGoalCoords() {
 void bearingAdjust() {
   /*
     Keep turning until bearing is within bound of goal bearing
+    https://developer.android.com/reference/android/location/Location: getBearing()
   */
   while (goal_bearing + SENSITIVITY < cur_bearing || goal_bearing - SENSITIVITY > cur_bearing) {
-    float abs_bearing = cur_bearing;
+    float pos_bearing = cur_bearing;
 
     if (cur_bearing >= 180) {
-      abs_bearing = 360 - cur_bearing;
+      pos_bearing = 360 - cur_bearing;
     }
 
-    if (abs_bearing >= goal_bearing) {
+    if (pos_bearing >= goal_bearing) {
       right();
     }
     else {
@@ -188,13 +188,19 @@ void bearingAdjust() {
 }
 
 void path() {
-  // Only need to check latitude and not longitude because, by traveling in goal bearing, if latitudes match, longitudes match
+  /*
+    Only need to check latitude and not longitude because, by traveling in goal bearing, 
+    if latitudes match, longitudes match
+  */
   while (cur_latitude > goal_latitude + SENSITIVITY || cur_latitude < goal_latitude - SENSITIVITY) {
     straight();
   }
   stop();
 }
 
+/*
+Will see if this is needed. Also, implementation is buggy. Look into improving.
+Problem: It goes backwards after avoiding for some time?
 void avoid() {
   // Ping ultrasonic sensor to get distance from object and move if something in front. 
   
@@ -210,16 +216,17 @@ void avoid() {
     right();
   }
 }
+*/
 
 void loop() {
   forward();
   avoid();
-  play();
 }
 
-
 void play() {
-  // Play sound
+  /*
+    Goal: Play sound when location set
+  */
   tmrpcm.setVolume(5);
   tmrpcm.stopPlayback();
   tmmmmmmr.play("bark.wav");

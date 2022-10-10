@@ -1,7 +1,12 @@
 # TODO
-- Good name
-- Slides add actual feedback
-- Microphone
+- Android App
+    - Phone on Roselle -> Use phone's GPS coords
+    - Generate XML file to parse "turning points" of pathing
+    - Use microphone to take in input for locations
+    - Bearing from phone as well -> Gyro not needed
+- Set up Bluetooth
+- Test sensitivity constant
+- Improve object avoidance
 
 # RESOURCES
 - [Object Avoidance](https://www.youtube.com/watch?v=KO1CaPIjt8M)
@@ -11,6 +16,7 @@
 - [Coordinates using wifi pinging](https://www.arduino.cc/reference/en/libraries/wifilocation/)
 - [App Inventor Bluetooth Android App](https://coldstreams.com/appinventor/2015/01/23/part-1-basic-bluetooth-communications-using-app-inventor/)
 - [Arduino Forum Use Android GPS](https://forum.arduino.cc/t/connect-phone-to-arduino-and-have-the-phone-send-its-gps-location-to-the-arduino/428898/4)
+- [Location Class Android](https://developer.android.com/reference/android/location/Location)
 
 ## If everything works by Monday:
 - Buy Bluetooth or look into using WIFI from car 
