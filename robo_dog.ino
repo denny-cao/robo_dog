@@ -44,7 +44,8 @@ float cur_latitude;
 float goal_longitude;
 float goal_latitude;
 
-float bearing;
+float cur_bearing;
+float goal_bearing;
 
 void setup() {
   Serial.begin(115200); 
@@ -160,37 +161,38 @@ void updateGoalCoords() {
     Simple Approach: Set goal coord once, and straight path.
                      Follow path until obstacle, then avoid and
                      try to stay on line
+    https://developer.android.com/reference/android/location/Location: getBearing()
   */
   ;
+  // Detect 
 }
 
-void detectOrientation() {
+void bearingAdjust() {
   /*
-    Solution 1: Move forwards and see what happens to coordinates to
-                detect orientation
-      - Problem: What to do if both long and lat increase? Then its on an angle...
-       - Maybe use trig to compute angle?
-      - Problem: GPS Coordinate inaccuracy
-    Solution 2: Pull bearing from Android phone as well
-      - https://stackoverflow.com/questions/41250064/android-how-to-get-gps-bearing
+    Keep turning until bearing is within bound of goal bearing
   */
-  foward();
-  delay(1000); // Delay 1000 ms before stopping to get accurate change in reading
+  while (goal_bearing + SENSITIVITY < cur_bearing || goal_bearing - SENSITIVITY > cur_bearing) {
+    float abs_bearing = cur_bearing;
+
+    if (cur_bearing >= 180) {
+      abs_bearing = 360 - cur_bearing;
+    }
+
+    if (abs_bearing >= goal_bearing) {
+      right();
+    }
+    else {
+      left();
+    }
+  }
 }
 
 void path() {
-  float lat_diff = goal_latitude - cur_latitude;
-  float long_diff = goal_longitude - cur_longitude;
-
-  float dist = sqrt(lat_diff * lat_diff + long_diff * long_diff);
-
-  if (dist > SENSITIVITY) {
-    /*
-      Goal: Create way to get correct bearing to travel at; probably use trig
-            to compute angle and then figure out how to go a specific angle
-            by tweaking speed of motors
-    */
+  // Only need to check latitude and not longitude because, by traveling in goal bearing, if latitudes match, longitudes match
+  while (cur_latitude > goal_latitude + SENSITIVITY || cur_latitude < goal_latitude - SENSITIVITY) {
+    straight();
   }
+  stop();
 }
 
 void avoid() {
