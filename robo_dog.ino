@@ -37,7 +37,7 @@ TMRpcm tmrpcm;
 tmmmrpcm.speakerPin = 10;
 
 // GPS Coordinates
-#define SENSITIVITY = .01;
+#define BEARING_SENSITIVITY = .01;
 float cur_longitude;
 float cur_latitude;
 
@@ -47,8 +47,9 @@ float goal_latitude;
 float cur_bearing;
 float goal_bearing;
 
+
 void setup() {
-  Serial.begin(115200); 
+  Serial.begin(9600); 
 
   // Motors
   pinMode(A_SPEED_CTRL_PIN, OUTPUT);
@@ -150,20 +151,20 @@ void left() {
 
 void updateCurrentCoords() {
   // From Android phone coordinates, update current coordinate variables
-  ;
+    if(Serial.available()) {
+      int data[] = Serial.read();
+      if (sizeof(data) == 2) {
+        cur_latitude = data[0];
+        cur_longitude = data[1];
+      }
+      else {
+        cur_bearing = data[0];
+      }
+  }
 }
 
 void updateGoalCoords() {
-  /* 
-    From Android phone, get new destination to reach
-    Idea: Google Maps or different map API to get "corners", or
-          positions where a change in direction is required
-    Simple Approach: Set goal coord once, and straight path.
-                     Follow path until obstacle, then avoid and
-                     try to stay on line
-  */
-  ;
-  // Detect 
+  ;  
 }
 
 void bearingAdjust() {
@@ -171,7 +172,7 @@ void bearingAdjust() {
     Keep turning until bearing is within bound of goal bearing
     https://developer.android.com/reference/android/location/Location: getBearing()
   */
-  while (goal_bearing + SENSITIVITY < cur_bearing || goal_bearing - SENSITIVITY > cur_bearing) {
+  while (goal_bearing + BEARING_SENSITIVITY < cur_bearing || goal_bearing - BEARING_SENSITIVITY > cur_bearing) {
     float pos_bearing = cur_bearing;
 
     if (cur_bearing >= 180) {
@@ -192,7 +193,7 @@ void path() {
     Only need to check latitude and not longitude because, by traveling in goal bearing, 
     if latitudes match, longitudes match
   */
-  while (cur_latitude > goal_latitude + SENSITIVITY || cur_latitude < goal_latitude - SENSITIVITY) {
+  while (cur_latitude > goal_latitude || cur_latitude < goal_latitude) {
     straight();
   }
   stop();
@@ -219,8 +220,8 @@ void avoid() {
 */
 
 void loop() {
+  updateCurrentCoords();
   forward();
-  avoid();
 }
 
 void play() {

@@ -2,10 +2,12 @@
 - Android App
     - Phone on Roselle -> Use phone's GPS coords
     - Generate XML file to parse "turning points" of pathing
+        - Unnecessary; App Inventor has built in [Navigator](http://ai2.appinventor.mit.edu/reference/components/maps.html#Navigation)
     - Use microphone to take in input for locations
     - Bearing from phone as well -> Gyro not needed
 - Set up Bluetooth
 - Test sensitivity constant
+    - The actual longitude/latitude data is EXTREMELY percise
 - Improve object avoidance
 
 # RESOURCES
